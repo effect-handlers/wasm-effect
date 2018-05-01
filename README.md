@@ -15,12 +15,18 @@ transform any content.
 
 Madoko can be run from the command line as:
 ```
-madoko -v --odir=out wasm-effect.md
+> madoko -v --odir=out wasm-effect.md
 ```
 
-You can install madoko using `npm`, the Node package manager, using:
+This generates a HTML file in `out/wasm-effect.html`. You can generate
+a PDF too using:  
 ```
-npm install -g madoko
+> madoko -v --odir=out --pdf wasm-effect.md
+```
+
+You can install madoko using `npm`, the [NodeJS](https://www.nodejs.org) package manager, using:
+```
+> npm install -g madoko
 ```
 
 ## Web editor
@@ -28,3 +34,5 @@ npm install -g madoko
 Go to <https://www.madoko.net> to edit the document in a live editor.
 You can open the document directly from your Github repository and
 when syncing, `ctrl+s`, you can specify commit messages. 
+
+Using Dropbox is even nicer as any changes are saved automatically.
