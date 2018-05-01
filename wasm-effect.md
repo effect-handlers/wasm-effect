@@ -61,7 +61,7 @@ Syntax
 ````
 rt ::= ...
   | (exn t*)
-  | (cont ft)
+  | (cont ft) 
 
 q ::= @exn | @eff
 ````
