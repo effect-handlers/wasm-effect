@@ -54,9 +54,9 @@ Koka [@Leijen:algeff], and Multi-core OCaml [@Dolan:conc;@White:mleff].
 # Formalization
 
 
-Syntax
+## Syntax
 
-#### exception definitions
+### Exception definitions
 
 ````
 e ::=
@@ -64,7 +64,7 @@ e ::=
   | ex* @exception et im
 ````
 
-#### exception types
+### Exception types
 
 ````
 et ::= q ft
@@ -76,7 +76,7 @@ q ::= . | @resumable
 ~@resumable := .
 ````
 
-#### reference types
+### Reference types
 
 ````
 rt ::= ...
@@ -84,7 +84,7 @@ rt ::= ...
   | (@cont ft) 
 ````
 
-#### instructions
+### Instructions
 ````
 e ::= ...
   | @throw q x
@@ -95,7 +95,8 @@ e ::= ...
   | @handle q ft x e* @else e* @end
 ````
 
-#### administrative instructions
+### Administrative instructions
+
 ````
 e ::= ...
   | @catch^q_n\{e*\} e* @end
@@ -106,12 +107,13 @@ e ::= ...
 
 ## Typing
 
-#### contexts
+### Contexts
+
 ````
 C ::= { ..., @exn et* }
 ````
 
-#### exception types
+### Exception types
 
 `````
 
@@ -119,7 +121,7 @@ C ::= { ..., @exn et* }
 C |- q (t1* -> (t2*)^|q|) @ok
 `````
 
-#### exception declarations
+### Exception declarations
 
 `````
 C |- et @ok
@@ -128,7 +130,7 @@ C |- (@exception et) @ok
 `````
 
 
-#### instructions
+### Instructions
 
 `````
 C_@exn(x) = q (t1* -> t2*)
@@ -172,7 +174,7 @@ C,@label t2* |- e2* : t1* (@exn q (t*)^|q|) -> t2*
 C |- @handle q ft x e1* @else e2* @end : t1* (exn q (t*)^|q|) -> t2*
 `````
 
-#### administrative instructions
+### Administrative instructions
 
 `````
 C’ = C @with @label = C_@label^|~q|
@@ -203,35 +205,38 @@ S; . |- E : (. -> t1*) => (. -> t2*)
 S; C |- @cont_n a : @cont (t1* -> t2*)
 `````
 
-## Reduction
+## Execution
 
-#### module instance
+### Module instance
 
 ````
 M ::= {..., @exn a*}
 ````
 
-#### store
+### Store
 ````
 S ::= {..., @exn et*, @cont (E?)*}
 ````
 
-#### lookup
+### Lookup
 ````
 F_@exn(x) := (F_@mod)_@exn(x)
 ````
 
-#### branch contexts
+### Branch contexts
 
 ````
 B^0 ::= v* \_ e*
 B^(i+1) ::= @label_n\{e*\} B^i @end | @catch^q_m\{e*\} B^(i+1) @end
 ````
 
-#### throw contexts
+### Throw contexts
+
 ````
 E_q ::= v* \_ e* | @label_n\{e*\} E_q @end | @catch^{~q}_m\{e*\} E_q @end | @frame_n\{F\} E_q @end
 ````
+
+### Reduction
 
 ````
 F; @throw x  -->  F; @throw a
