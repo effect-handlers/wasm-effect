@@ -1,0 +1,21 @@
+Css Header: 
+    .citations, .citations a { color: gray; }
+    p{ line-height: 1.25 }
+
+.toc { .sans-serif }
+
+.token.type.keyword {
+  color: navy;
+}
+
+pre {
+  page-break-before: auto;
+  page-break-after: auto; 
+}
+
+updates {
+  before: "**updates:**&br;";
+  font-size: small;
+}
+
+
