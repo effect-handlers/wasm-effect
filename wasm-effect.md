@@ -293,14 +293,14 @@ S; v^n (@cont_n a) @resume  -->  S; @trap
 ````
 
 ````
-S; F; v^m (@cont_n a) (@resume\_@throw x)  —->  S; F; E[v^m (@throw a')]
+S; F; v^m (@cont_n a) (@resume\_@throw x)  -->  S; F; E[v^m (@throw a')]
    S_@cont(a) = E
    F_@exn(x) = a'
    S_@exn(a') = q (t1^m -> \epsilon)
 ````
 
 ````
-S; (@cont_n a) (@resume\_@throw x)  -—>  S; @trap
+S; (@cont_n a) (@resume\_@throw x)  -->  S; @trap
    S_@cont(a) = \epsilon
 ````
 
