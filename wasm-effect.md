@@ -151,7 +151,7 @@ C |- @resume : t1* (@cont t1* -> t2*) -> t2*
 `````
 
 `````
-C_@exn(x) = q (t3* -> t4*)
+C_@exn(x) = q (t3* -> t4*) x != y
 ---------------------------------------------------
 C |- @resume_throw : t3* (@cont t1* -> t2*) -> t2*
 `````
@@ -227,7 +227,7 @@ F_@exn(x) := (F_@mod)_@exn(x)
 
 ````
 B^0 ::= v* \_ e*
-B^(i+1) ::= @label_n\{e*\} B^i @end | @catch^q_m\{e*\} B^(i+1) @end
+B^{(i+1)} ::= @label_n\{e*\} B^i @end | @catch^q_m\{e*\} B^{(i+1)} @end
 ````
 
 ### Throw contexts

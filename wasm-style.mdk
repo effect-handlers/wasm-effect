@@ -40,6 +40,7 @@
            //!==/{\not\equiv}\
            //~==/{\,\cong\,}\
            //!~=/{\,\not\equiv\,}\
+           //!=/\ne{}\
            //\.=/\doteq{}\
            //\btau(\d)/\tau_{\1}\
            //\btau(?![a-zA-Z])/\tau\
