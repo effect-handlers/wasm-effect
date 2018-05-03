@@ -90,7 +90,7 @@ e ::= ...
   | @throw q x
   | @rethrow
   | @resume
-  | @resume_throw z
+  | @resume\_@throw z
   | @try q ft e* @catch e* @end
   | @handle q ft x e* @else e* @end
 ````
@@ -153,7 +153,7 @@ C |- @resume : t1* (@cont t1* -> t2*) -> t2*
 `````
 C_@exn(x) = q (t3* -> t4*)
 ---------------------------------------------------
-C |- @resume\_throw : t3* (@cont t1* -> t2*) -> t2*
+C |- @resume\_@throw : t3* (@cont t1* -> t2*) -> t2*
 `````
 
 `````
@@ -293,7 +293,7 @@ S; v^n (@cont_n a) @resume  -->  S; @trap
 ````
 
 ````
-S; F; v^m (@cont_n a) (@resume_throw x)  —>  S; F; E[v^m (@throw a’)]
+S; F; v^m (@cont_n a) (@resume\_@throw x)  —>  S; F; E[v^m (@throw a’)]
    S_@cont(a) = E
    F_@exn(x) = a'
    S_@exn(a') = q (t1^m -> .)
