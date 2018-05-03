@@ -21,6 +21,7 @@
 .math-inline, mathpre, .code2, .pre-fenced4 {
   replace:"//([a-zA-Z0-9\)])([\*\?])/\1^{\2}//g";
   replace:"/@?\b(throw|rethrow|resume|abort|try|catch|handle|swallow|end)(?![a-zA-Z])/\mathkw{\1}/g";
+  replace:"//\|q\|/{|q|}//\|~q\|/{|\sim{}q|}//g";
   replace:"//~([^~\n\s]+)~>/\leadsto_{\1}\
            //\/\\/\wedge{}\
            //\\\//\vee{}\
@@ -40,11 +41,10 @@
            //~==/{\,\cong\,}\
            //!~=/{\,\not\equiv\,}\
            //\.=/\doteq{}\
-           //\bt(\d)/\tau_{\1}\
-           //\bt(?![a-zA-Z])/\tau\
+           //\btau(\d)/\tau_{\1}\
+           //\btau(?![a-zA-Z])/\tau\
            //\bmu(?![a-zA-Z])/\mu{}\
            //\bnu(?![a-zA-Z])/\upsilon{}\
-           //\bft(?![a-zA-Z])/\varphi{}\
            //\b([SFE])(?![a-zA-Z])/\mathsf{\1}\
            //\|\-/\vdash{}\
            //<</\llangle{}\
