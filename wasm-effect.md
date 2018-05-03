@@ -68,7 +68,7 @@ e ::=
 
 ````
 et ::= q ft
-q ::= . | @resumable
+q ::= \epsilon | @resumable
 ````
 
 ````
@@ -193,14 +193,14 @@ S; C |- @throw a : ft
 `````
 S_@exn(a1) = q (t1* -> t2*)
 (C |- v : t1)*
-(S; . |- S_@cont(a2) : (. -> t2*) => (. -> t*))^|q|
+(S; . |- S_@cont(a2) : (\epsilon -> t2*) => (\epsilon -> t*))^|q|
 ----------------------------------------------------
 S; C |- @exn_n a1 v* a2^|q| : @exn q (t*)^|q|
 `````
 
 `````
 S_@cont(a) = E
-S; . |- E : (. -> t1*) => (. -> t2*)
+S; . |- E : (\epsilon -> t1*) => (\epsilon -> t2*)
 ---------------------------------------------
 S; C |- @cont_n a : @cont (t1* -> t2*)
 `````
@@ -244,7 +244,7 @@ F; @throw x  -->  F; @throw a
 ````
 
 ````
-v^n (@try q ft e1* @catch e2* @end)  -->  @catch^q_m\{e2*\} (@label_m\{.\} v^n e1* @end) @end
+v^n (@try q ft e1* @catch e2* @end)  -->  @catch^q_m\{e2*\} (@label_m\{\epsilon\} v^n e1* @end) @end
     ft = t1^n -> t2^m
 ````
 
@@ -253,12 +253,12 @@ v^n (@try q ft e1* @catch e2* @end)  -->  @catch^q_m\{e2*\} (@label_m\{.\} v^n e
 ````
 
 ````
-S; F; @catch^._m{e*} E_.[v^n (@throw a1)] @end  -->  S'; F; @label_m\{.\} (@exn_m a1 v^n) e* @end
+S; F; @catch^._m\{e*\} E_.[v^n (@throw a1)] @end  -->  S'; F; @label_m\{\epsilon\} (@exn_m a1 v^n) e* @end
     S_@exn(a1) = t1^n -> t2^m
 ````
 
 ````
-S; F; @catch^{@resumable}_m {e*} E_@resumable[v^n (@throw a1)] @end  -->  S'; F; @label_m\{.\} (@exn_m a1 v^n a2) e* @end
+S; F; @catch^{@resumable}_m\{e*\} E_@resumable[v^n (@throw a1)] @end  -->  S'; F; @label_m\{.\} (@exn_m a1 v^n a2) e* @end
     S_@exn(a1) = @resumable (t1^n -> t2^m)
     a2 = |S_@cont|
     S' = S @with @cont += E'
@@ -270,13 +270,13 @@ S; F; @catch^{@resumable}_m {e*} E_@resumable[v^n (@throw a1)] @end  -->  S'; F;
 ````
 
 ````
-F; v1^n (@exn_m a1 v* a2?) @handle q ft x e1* @else e2* @end  -->  F; @label_k\{.\} v1^n v* (@cont_m a2)? e1* @end
+F; v1^n (@exn_m a1 v* a2?) @handle q ft x e1* @else e2* @end  -->  F; @label_k\{\epsilon\} v1^n v* (@cont_m a2)? e1* @end
     F_@exn(x) = a1
     ft = t1^n -> t2^k
 ````
 
 ````
-F; v1^n (@exn_m a1 v* a2?) @handle q ft x e1* @else e2* @end  -->  F; @label_k\{.\} v1^n (@exn_m a1 v* a2?) e2* @end
+F; v1^n (@exn_m a1 v* a2?) @handle q ft x e1* @else e2* @end  -->  F; @label_k\{\epsilon\} v1^n (@exn_m a1 v* a2?) e2* @end
     F_@exn(x) =/= a1
     ft = t1^n -> t2^k
 ````
@@ -284,24 +284,24 @@ F; v1^n (@exn_m a1 v* a2?) @handle q ft x e1* @else e2* @end  -->  F; @label_k\{
 ````
 S; v^n (@cont_n a) @resume  -->  S'; E_@resumable[v^n]
     S_cont(a) = E_@resumable
-    S' = S @with @cont(a) = .
+    S' = S @with @cont(a) = \epsilon
 ````
 
 ````
 S; v^n (@cont_n a) @resume  -->  S; @trap
-    S_@cont(a) = .
+    S_@cont(a) = \epsilon
 ````
 
 ````
-S; F; v^m (@cont_n a) (@resume\_@throw x)  —>  S; F; E[v^m (@throw a’)]
+S; F; v^m (@cont_n a) (@resume\_@throw x)  —>  S; F; E[v^m (@throw a')]
    S_@cont(a) = E
    F_@exn(x) = a'
-   S_@exn(a') = q (t1^m -> .)
+   S_@exn(a') = q (t1^m -> \epsilon)
 ````
 
 ````
-S; (@cont_n a) (@resume_throw x)  —>  S; @trap
-   S_@cont(a) = .
+S; (@cont_n a) (@resume\_@throw x)  —>  S; @trap
+   S_@cont(a) = \epsilon
 ````
 
 
