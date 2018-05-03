@@ -20,8 +20,8 @@
 
 .math-inline, mathpre, .code2, .pre-fenced4 {
   replace:"//([a-zA-Z0-9\)])([\*\?])/\1^{\2}//g";
-  replace:"/@?\b(throw|rethrow|resume|abort|try|catch|handle|swallow|end)(?![a-zA-Z])/\mathkw{\1}/g";
   replace:"//\|q\|/{|q|}//\|~q\|/{|\sim{}q|}//g";
+  replace:"/@resume_throw(?![a-zA-Z])/@resume\_@throw/g";
   replace:"//~([^~\n\s]+)~>/\leadsto_{\1}\
            //\/\\/\wedge{}\
            //\\\//\vee{}\
