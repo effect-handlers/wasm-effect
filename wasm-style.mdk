@@ -45,7 +45,7 @@
            //\btau(?![a-zA-Z])/\tau\
            //\bmu(?![a-zA-Z])/\mu{}\
            //\bnu(?![a-zA-Z])/\upsilon{}\
-           //\b([SFE])(?![a-zA-Z])/\mathsf{\1}\
+           //\b([CSFE])(?![a-zA-Z])/\mathsf{\1}\
            //\|\-/\vdash{}\
            //<</\llangle{}\
            //>>/\rrangle{}\
