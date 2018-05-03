@@ -153,7 +153,7 @@ C |- @resume : t1* (@cont t1* -> t2*) -> t2*
 `````
 C_@exn(x) = q (t3* -> t4*)
 ---------------------------------------------------
-C |- @resume_throw : t3* (@cont t1* -> t2*) -> t2*
+C |- @resume\_throw : t3* (@cont t1* -> t2*) -> t2*
 `````
 
 `````
@@ -171,13 +171,13 @@ C_@exn(x) = q (t3* -> t4*)
 C,@label t2* |- e1* : t1* t3* (@cont t2* t*)^|~q| -> t2*
 C,@label t2* |- e2* : t1* (@exn q (t*)^|q|) -> t2*
 ----------------------------------------------------------------------
-C |- @handle q ft x e1* @else e2* @end : t1* (exn q (t*)^|q|) -> t2*
+C |- @handle q ft x e1* @else e2* @end : t1* (@exn q (t*)^|q|) -> t2*
 `````
 
 ### Administrative instructions
 
 `````
-C’ = C @with @label = C_@label^|~q|
+C' = C @with @label = C_@label^|~q|
 S; C',@label t2* |- e1* : t1* -> t2*
 S; C',@label t2* |- e2* : (@exn q (t2*)^|q|) -> t2*
 -------------------------------------------------------
