@@ -158,10 +158,10 @@ C |- @resume_throw : t3* (@cont t1* -> t2*) -> t2*
 
 `````
 ft = t1* -> t2*
-C' = C @with @label = C_@label^|~q|
+C' = C @with @label = C_@label^|~q| @with @return = C_@return^|~q|
 C',@label t2* |- e1* : ft
 C',@label t2* |- e2* : (@exn q (t2*)^|q|) -> t2*
---------------------------------------------------
+------------------------------------------------------------------
 C |- @try q ft e1* @catch e2* @end : ft
 `````
 
