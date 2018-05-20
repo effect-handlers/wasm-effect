@@ -72,8 +72,8 @@ q ::= \epsilon | @resumable
 ````
 
 ````
-~. := @resumable
-~@resumable := .
+~\epsilon := @resumable
+~@resumable := \epsilon
 ````
 
 ### Reference types
@@ -302,6 +302,36 @@ S; F; v^m (@cont_n a) (@resume\_@throw x)  -->  S; F; E[v^m (@throw a')]
 ````
 S; (@cont_n a) (@resume\_@throw x)  -->  S; @trap
    S_@cont(a) = \epsilon
+````
+
+
+## Design Alternative
+
+Instead of a structured $@handle$ instruction just provide a conditional branch.
+
+### Syntax
+````
+e ::= ...
+  | @br\_@on\_@exn q l x
+````
+
+### Typing
+`````
+C_@exn(x) = q (t1* -> t2*)
+C_@label(l) = t1* (@cont t2* t*)^|~q|
+----------------------------------------------------------------------
+C |- @br\_@on\_@exn q l x : (@exn q (t*)^|q|) -> (@exn q (t*)^|q|)
+`````
+
+### Reduction
+````
+F; (@exn_m a1 v* a2?) @br\_@on\_@exn q l x  -->  F; v* (@cont a2)? (@br l)
+    F_@exn(x) = a1
+````
+
+````
+F; (@exn_m a1 v* a2?) @br\_@on\_@exn q l x  -->  F; (@exn_m a1 v* a2?)
+    F_@exn(x) =/= a1
 ````
 
 
